@@ -1,0 +1,35 @@
+<h1 style="text-align: center; margin-top: 0.4%;">Editar</h1>
+<div class="main">
+    <div class="form">
+        <div class="form-input">
+            <label for="Nome">Nome:</label>
+            <input type="text" name="Nome" id="Nome" [(ngModel)]="pessoa.Nome">
+        </div>
+        <div class="form-input">
+            <label for="DataNascimento">Data de Nascimento:</label>
+            <input type="date" name="DataNascimento" id="DataNascimento" [(ngModel)]="pessoa.DataNascimento">
+        </div>
+        <div class="form-input">
+            <label for="Inativo">Inativo:</label>
+            <input type="checkbox" name="Inativo" id="Inativo" [(ngModel)]="pessoa.Inativo">
+        </div>
+        <div class="form-input">
+            <label for="Nacionalidade">Nacionalidade:</label>
+            <select name="Nacionalidade" id="Nacionalidade" (change)="selectNacionalidade()" [(ngModel)]="nacionalidadeSelecionada">
+                <option *ngFor="let n of nacionalidade | keyvalue" value="{{n.key}}">{{n.value}}</option>
+            </select>
+        </div>
+        <div class="form-input" *ngIf="nacionalidadeSelecionada == 1">
+            <label for="Rg">RG:</label>
+            <input type="text" name="Rg" id="Rg" [(ngModel)]="pessoa.Rg">
+        </div>
+        <div class="form-input" *ngIf="nacionalidadeSelecionada == 2">
+            <label for="Passaporte">Passaporte:</label>
+            <input type="text" name="Passaporte" id="Passaporte" [(ngModel)]="pessoa.Passaporte">
+        </div>
+        <div class="form-input">
+            <button (click)="update()">Atualizar</button>
+            <button (click)="goHome()">Página Inicial</button>
+        </div>
+    </div>
+</div>

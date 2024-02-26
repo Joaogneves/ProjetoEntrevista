@@ -1,0 +1,73 @@
+<h1 style="text-align: center; margin-top: 0.4%;">Cadastrar Pessoa</h1>
+<div class="main">
+    <div class="form">
+        <div class="form-input">
+            <label for="Nome">Nome:</label>
+            <input type="text" name="Nome" id="Nome" [(ngModel)]="pessoaCadastro.Nome">
+        </div>
+        <div class="form-input">
+            <label for="DataNascimento">Data de Nascimento:</label>
+            <input type="date" name="DataNascimento" id="DataNascimento" [(ngModel)]="pessoaCadastro.DataNascimento">
+        </div>
+        <div class="form-input">
+            <label for="Inativo">Inativo:</label>
+            <input type="checkbox" name="Inativo" id="Inativo" [(ngModel)]="pessoaCadastro.Inativo">
+        </div>
+        <div class="form-input">
+            <label for="Nacionalidade">Nacionalidade:</label>
+            <select name="Nacionalidade" id="Nacionalidade" (change)="selectNacionalidade()" [(ngModel)]="nacionalidadeSelecionada">
+                <option *ngFor="let n of nacionalidade | keyvalue" value="{{n.key}}">{{n.value}}</option>
+            </select>
+        </div>
+        <div class="form-input" *ngIf="nacionalidadeSelecionada == 1">
+            <label for="Rg">RG:</label>
+            <input type="text" name="Rg" id="Rg" [(ngModel)]="pessoaCadastro.Rg">
+        </div>
+        <div class="form-input" *ngIf="nacionalidadeSelecionada == 2">
+            <label for="Passaporte">Passaporte:</label>
+            <input type="text" name="Passaporte" id="Passaporte" [(ngModel)]="pessoaCadastro.Passaporte">
+        </div>
+        <div class="form-input">
+            <button (click)="Create()">Adicionar Pessoa</button>
+            <button (click)="clear()">Limpar Formulário</button>
+        </div>
+    </div>
+    <div class="tabela">
+        <div>
+            <div class="container">
+                <div class="input-search">
+                    <div class="content">
+                        <input type="search" placeholder="Buscar por nome" [(ngModel)]="searchKey">
+                        <button (click)="search()">Procurar</button>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cód.</th>
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>Inativo</th>
+                        <th>Nacionalidade</th>
+                        <th>Rg</th>
+                        <th>Passaporte</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of pessoas">
+                        <td>{{p.Codigo}}</td>
+                        <td>{{p.Nome}}</td>
+                        <td>{{p.DataNascimento | date | date:'dd/MM/yyyy'}}</td>
+                        <td><i class="bi bi-check-lg" *ngIf="p.Inativo"></i></td>
+                        <td>{{p.Nacionalidade == 1? 'Brasileiro': 'Outros'}}</td>
+                        <td>{{p.Rg}}</td>
+                        <td>{{p.Passaporte}}</td>
+                        <td><button id="edit" (click)="edit(p.Codigo)">Editar</button><button id="delete" (click)="delete(p.Codigo)">Apagar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

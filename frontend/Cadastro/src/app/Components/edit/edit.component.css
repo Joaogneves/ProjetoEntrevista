@@ -1,0 +1,47 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+.form {
+    border: 1px solid #dadada;
+    width: 25vw;
+    height: 55vh;
+    margin-top: 8vh;
+}
+
+.form-input {
+    padding: 3%;
+}
+
+.form-input label {
+    display: flex;
+}
+
+.form-input input, .form-input select {
+    padding: 1% 2%;
+    margin-top: 1%;
+    display: flex;
+    width: 95%;
+}
+
+.form-input select {
+    width: 100%;
+}
+
+button {
+    padding: 2%;
+    margin-right: 3%;
+    background-color: #28a745;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #28a745dd;
+}
